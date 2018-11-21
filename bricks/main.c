@@ -11,33 +11,34 @@
 
 int main(void)
 {
-	int x = 0, y = 0, xt = 1, yt = 1, a = 30, b = 23; //a,b?? ???? ???
-	print_box();									  //??еш? ???
+	int x = 0, y = 0, xt = 1, yt = 1, a = 30, b = 23; //a,b : the point of bar
+	print_box(); //print edge
 	Color(15);
-	printf("????????? esc?? ???????? \n"); //??еш? ????? ???????
-	printf("?? ??? : space bar ");
-	cursor();	//ии?? ?????
-	bar(a, '-'); //bar ???
+	printf("Stop if you push esc \n"); 
+	printf("Shot the ball : space bar ");
+	cursor(); //Remove cursor
+	bar(a, '-'); //print bar
 	brick(random(), 5);
 
 	while (1)
 	{
 
-		if (GetAsyncKeyState(ESC) < 0)
+		if (GetAsyncKeyState(ESC) < 0) // Stop if you push ESC
 		{
-			printf("????????.");
+			printf("Quit.");
 			break;
 		}
 		if (GetAsyncKeyState(SPACE) < 0)
+		//Space bar to shot the ball
 		{
 			gotoxy(a, b);
-			x = a + 7;
+			x = a + 7; //middle of bar
 			y = b - 1;
 
 			while (1)
 			{
-				delete_bar(a);
-				if (GetAsyncKeyState(ESC) < 0)
+				delete_bar(a);//remove bar
+				if (GetAsyncKeyState(ESC) < 0) //stop if  you push ESC
 					break;
 
 				if (GetAsyncKeyState(VK_LEFT) < 0)
@@ -54,32 +55,34 @@ int main(void)
 					else
 						a++;
 				}
-				bar(a, '-');
+				bar(a, '-');//print bar
 				print_dot(x, y, " ");
 				x += xt;
 				y -= yt;
 				if (y == MINX + 1 || y == MAXX - 1)
+				//reach ceiling or bottom - edge, ball are 2byte -> tuning size
 				{
 					if (y == MAXX - 1)
 					{
 						system("cls");
 						Color(13);
-						printf("???????? ! ");
+						printf("game over ! ");
 						break;
 					}
 					else
-						yt *= -1;
+						yt *= -1; //y direction is change, x direction is same
 				}
-				if (x == MINY + 2 || x == MAXY - 3)
+				if (x == MINY + 2 || x == MAXY - 3)//reach left edge or right edge
 				{
-					xt *= -1;
+					xt *= -1;//x direction is change, y direction is same
 				}
-				if ((x > a - 2 && x < a + 17) && (y > b - 2 && y < b + 2))
+				if ((x > a - 2 && x < a + 17) && (y > b - 2 && y < b + 2))//ball shape is 2byte
+				//cannot get down the bar
 				{
 					yt *= -1;
 				}
-				Color(15);
-				print_dot(x, y, "??");
+				Color(15);//white color
+				print_dot(x, y, "?");
 				Sleep(30);
 			}
 		}
