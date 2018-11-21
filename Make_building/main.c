@@ -8,7 +8,7 @@ int main(void){
 	FILE*fp;
 	head=tail=NULL;
 	
-	if((fp=fopen("Friend.txt","w"))==NULL){
+	if((fp=fopen("Friend.txt","w"))==NULL){ //친구 정보 txt파일에 입력
 		printf("error!\n");
 		exit(1);
 	}

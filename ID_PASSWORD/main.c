@@ -15,18 +15,18 @@ int main(void){
 	int result=0;
 
 
-	getString("ID",id_input,0);
+	getString("ID",id_input,0); //Input ID
 	printf("!!!\n");
-	getString("Password",pass_input,1);
+	getString("Password",pass_input,1); //Input Password
 	result=compare(id,id_input);
-	if(result==1)printf("맞습니다.\n");
-	else printf("틀립니다.\n");
+	if(result==1)printf("Correct.\n");
+	else printf("Wrong.\n");
 }
 
 void getString(char *msg, char*str, int mode){
 	//mode 1:일반 , 0 ==pw
 	int i=0;
-	printf("%s를 입력하시오 : \n",msg);
+	printf("Enter your %s : \n",msg);
 	if(mode==0) scanf_s("%s",str);
 	else if(mode==1){
 		for(i=0;str[i]==13;i++){
@@ -48,7 +48,7 @@ int mystrlen(char*str){
 int compare(char * id, char *id_input){
 	int i=0;
 
-	if(mystrlen(id)!=mystrlen(id_input)) return 0; //틀리다
+	if(mystrlen(id)!=mystrlen(id_input)) return 0; //Wrong
 
 	for(i=0;id[i]!='\0';i++){
 		if(id[i]==id_input[i])

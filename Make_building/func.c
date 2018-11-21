@@ -2,6 +2,7 @@
 
 int get_only_num(int limit)
 {
+	//숫자만 입력받도록 하는 함수
    char str[11] = "";
    char c = '0';
    int ok = 0;
@@ -50,6 +51,7 @@ int get_only_num(int limit)
 
 int show_menu()
 {
+	//메뉴 출력
    int menu = 0;
 
    printf("##############################################\n");
@@ -84,7 +86,7 @@ int mystrlen(char*str){//문자열 길이
 }
 
 void make_friend(Friend*Friends,Friend**head,Friend**tail){
-	
+	//list에 친구 추가
 	Friends=(Friend*)malloc(sizeof(Friend));
 	if(Friends==NULL){
 		printf("에러!\n");
@@ -95,7 +97,7 @@ void make_friend(Friend*Friends,Friend**head,Friend**tail){
 	printf("나이? ");
 	Friends->age=get_only_num(1);
 	printf("가진 돈?(만원 단위,999만원까지 가능) ");
-	Friends->가진돈=get_only_num(2);
+	Friends->have_money=get_only_num(2);
 	printf("성?(M,F둘 중 하나만 입력해주세요)");
 	scanf_s("%c",&Friends->sex,sizeof(Friends->sex));
 	getchar();//버퍼 지우기
@@ -110,6 +112,7 @@ void make_friend(Friend*Friends,Friend**head,Friend**tail){
 }
 
 void add_friend_front(Friend**head){
+	//친구를 list 앞부분에 추가하기
 	Friend*new_Friend;
 	new_Friend=(Friend*)malloc(sizeof(Friend));
 
@@ -118,7 +121,7 @@ void add_friend_front(Friend**head){
 	printf("나이? ");
 	new_Friend->age=get_only_num(1);
 	printf("가진 돈?(만원 단위,999만원까지 가능) ");
-	new_Friend->가진돈=get_only_num(2);
+	new_Friend->have_money=get_only_num(2);
 	printf("성?(M,F둘 중 하나만 입력해주세요)");
 	scanf_s("%c",&new_Friend->sex,sizeof(new_Friend->sex));
 	getchar();
@@ -127,6 +130,7 @@ void add_friend_front(Friend**head){
 }
 
 void add_friend_mid(Friend*pre){
+	//친구를 list 중간에 추가하기
 	Friend*new_Friend=(Friend*)malloc(sizeof(Friend));
 	Friend*Friends_pre=(Friend*)malloc(sizeof(Friend));
 	Friends_pre=NULL;
@@ -136,7 +140,7 @@ void add_friend_mid(Friend*pre){
 	printf("나이? ");
 	new_Friend->age=get_only_num(1);
 	printf("가진 돈?(만원 단위,999만원까지 가능) ");
-	new_Friend->가진돈=get_only_num(2);
+	new_Friend->have_money=get_only_num(2);
 	printf("성?(M,F둘 중 하나만 입력해주세요)");
 	scanf_s("%c",&new_Friend->sex,sizeof(new_Friend->sex));
 	getchar();
@@ -146,6 +150,7 @@ void add_friend_mid(Friend*pre){
 }
 
 void delete_friend(Friend*Friends,Friend**head,Friend**tail){
+	//친구 삭제
 	Friend*Friends_pre=(Friend*)malloc(sizeof(Friend));
 	char fname[20];//삭제할 친구 입력
 	Friends_pre=NULL;
@@ -176,6 +181,7 @@ void delete_friend(Friend*Friends,Friend**head,Friend**tail){
 }
 
 void show_friend(Friend*Friends,Friend**head){
+	//친구 list 출력
 	Friends=*head;//처음으로 보냄
 	if(*head==NULL)
 		printf("리스트가 존재하지 않습니다.\n");
@@ -184,7 +190,7 @@ void show_friend(Friend*Friends,Friend**head){
 			printf("~~~\n");
 			printf("이름 : %s",Friends->name);
 			printf("나이? : %d\n",Friends->age);
-			printf("가진 돈? : %d\n",Friends->가진돈);
+			printf("가진 돈? : %d\n",Friends->have_money);
 			printf("성? : %c\n",Friends->sex);
 			printf("\n");
 			Friends=Friends->next;

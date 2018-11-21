@@ -7,7 +7,7 @@
 typedef struct friends{
 	char name[20];
 	int age;
-	int ???;
+	int have_money;
 	char sex;
 	struct friends*next;
 }Friend;
